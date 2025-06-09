@@ -1,0 +1,37 @@
+[
+  {
+    "name": "TRX",
+    "price": 0.127,
+    "pair": "TRX/USDT",
+    "change": -0.45,
+    "logo": "https://cryptologos.cc/logos/tron-trx-logo.png"
+  },
+  {
+    "name": "LINK",
+    "price": 17.33,
+    "pair": "LINK/USDT",
+    "change": 3.91,
+    "logo": "https://cryptologos.cc/logos/chainlink-link-logo.png"
+  },
+  {
+    "name": "MATIC",
+    "price": 0.74,
+    "pair": "MATIC/USDT",
+    "change": 0.86,
+    "logo": "https://cryptologos.cc/logos/polygon-matic-logo.png"
+  },
+  {
+    "name": "SHIB",
+    "price": 0.00002415,
+    "pair": "SHIB/USDT",
+    "change": -1.58,
+    "logo": "https://cryptologos.cc/logos/shiba-inu-shib-logo.png"
+  },
+  {
+    "name": "LTC",
+    "price": 85.23,
+    "pair": "LTC/USDT",
+    "change": 2.04,
+    "logo": "https://cryptologos.cc/logos/litecoin-ltc-logo.png"
+  }
+]
