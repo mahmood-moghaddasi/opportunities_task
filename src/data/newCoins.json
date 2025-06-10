@@ -4,34 +4,34 @@
     "price": 0.47,
     "pair": "ADA/USDT",
     "change": 0.31,
-    "logo": "https://cryptologos.cc/logos/cardano-ada-logo.png"
+    "logo": "https://assets.coingecko.com/coins/images/975/small/cardano.png"
   },
   {
     "name": "DOGE",
     "price": 0.155,
     "pair": "DOGE/USDT",
     "change": 4.13,
-    "logo": "https://cryptologos.cc/logos/dogecoin-doge-logo.png"
+    "logo": "https://assets.coingecko.com/coins/images/5/small/dogecoin.png"
   },
   {
     "name": "AVAX",
     "price": 37.8,
     "pair": "AVAX/USDT",
     "change": -2.04,
-    "logo": "https://cryptologos.cc/logos/avalanche-avax-logo.png"
+    "logo": "https://assets.coingecko.com/coins/images/12559/small/coin-round-red.png"
   },
   {
     "name": "TON",
     "price": 7.12,
     "pair": "TON/USDT",
     "change": 0.72,
-    "logo": "https://cryptologos.cc/logos/toncoin-ton-logo.png"
+    "logo": "https://assets.coingecko.com/coins/images/17980/small/toncoin.png"
   },
   {
     "name": "DOT",
     "price": 6.53,
     "pair": "DOT/USDT",
     "change": 1.11,
-    "logo": "https://cryptologos.cc/logos/polkadot-new-dot-logo.png"
+    "logo": "https://assets.coingecko.com/coins/images/12171/small/polkadot.png"
   }
 ]
