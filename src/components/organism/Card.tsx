@@ -22,7 +22,7 @@ function Card({ coins, title, titleIcon }: CardProps): React.ReactElement {
         <Image src={titleIcon} alt={title} width={17} height={17} />
         <span className="text-[#B3BBF8] text-[14px]">{title}</span>
       </div>
-      <div className="flex flex-col gap-7">
+      <div className="flex flex-col gap-4">
         {coins.map((coin, index) => (
           <div key={index} className="w-full h-fit flex justify-between">
             <div className="flex gap-4 items-center">
