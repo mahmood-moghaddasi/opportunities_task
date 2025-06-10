@@ -1,4 +1,11 @@
 import React from "react";
+import Card from "../organism/Card";
+import hotCoins from "@/data/hotCoins.json";
+import newCoins from "@/data/newCoins.json";
+import topGainersCoins from "@/data/topGainersCoins.json";
+import star from "@/../../public/icons/star.svg";
+import rise from "@/../../public/icons/rise.svg";
+import fire from "@/../../public/icons/fire.svg";
 
 function OpportunitiesSection() {
   return (
@@ -13,9 +20,9 @@ function OpportunitiesSection() {
         <button>View All coins</button>
       </div>
       <div className="flex gap-3">
-        <div className="w-[330px] h-[405px] bg-white"></div>
-        <div className="w-[330px] h-[405px] bg-white"></div>
-        <div className="w-[330px] h-[405px] bg-white"></div>
+        <Card coins={hotCoins} title={"Hot List"} titleIcon={fire} />
+        <Card coins={newCoins} title={"New Coins"} titleIcon={star} />
+        <Card coins={topGainersCoins} title={"Top Gainers"} titleIcon={rise} />
       </div>
     </div>
   );
