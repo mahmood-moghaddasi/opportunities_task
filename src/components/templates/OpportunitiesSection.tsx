@@ -1,9 +1,8 @@
 "use client";
 import React, { useRef } from "react";
 import Card from "../organism/Card";
-import hotCoins from "@/data/hotCoins.json";
-import newCoins from "@/data/newCoins.json";
-import topGainersCoins from "@/data/topGainersCoins.json";
+import coins from "@/data/coins.json";
+
 import star from "@/../../public/icons/star.svg";
 import rise from "@/../../public/icons/rise.svg";
 import fire from "@/../../public/icons/fire.svg";
@@ -88,19 +87,19 @@ function OpportunitiesSection() {
         <div className="flex gap-3">
           <Card
             fetchData={isInView}
-            coins={hotCoins}
+            coins={coins}
             title={"Hot List"}
             titleIcon={fire}
           />
           <Card
             fetchData={isInView}
-            coins={newCoins}
+            coins={coins}
             title={"New Coins"}
             titleIcon={star}
           />
           <Card
             fetchData={isInView}
-            coins={topGainersCoins}
+            coins={coins}
             title={"Top Gainers"}
             titleIcon={rise}
           />
