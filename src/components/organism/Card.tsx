@@ -6,6 +6,7 @@ import Image, { StaticImageData } from "next/image";
 import { shuffleArray } from "@/utils/helpers";
 import { AnimatePresence, motion } from "framer-motion";
 import CardItem from "./CardItem";
+import CardSkeleton from "./CardSkeleton";
 interface coin {
   logo: string;
   name: string;
@@ -18,6 +19,7 @@ interface CardProps {
   title: string;
   titleIcon: StaticImageData;
   fetchData: boolean;
+  isPending: boolean;
 }
 
 function Card({
@@ -25,6 +27,7 @@ function Card({
   title,
   titleIcon,
   fetchData,
+  isPending,
 }: CardProps): React.ReactElement {
   const [items, setItems] = useState(coins);
   useEffect(() => {
@@ -42,6 +45,11 @@ function Card({
         <Image src={titleIcon} alt={title} width={17} height={17} />
         <span className="text-[#B3BBF8] text-[14px]">{title}</span>
       </div>
+      {isPending ? (
+        <div className="flex flex-col gap-4 ">
+          <CardSkeleton />
+        </div>
+      ) : (
       <motion.ul
         className="flex flex-col gap-4 "
         initial={{ y: "200px", opacity: 0 }}
