@@ -64,8 +64,6 @@ function OpportunitiesSection() {
   useEffect(() => {
     if (isInView) {
       const timer = setTimeout(() => {
-        console.log("المنت وارد ویوپورت شد و ۲ ثانیه گذشت ✅");
-
         setIsPending(false);
       }, 2000);
 
@@ -125,9 +123,10 @@ function OpportunitiesSection() {
             <Image src={arrow} alt="arrow" width={25} height={20} />
           </button>
         </div>
-        <div className="max-md:hidden items-center justify-center flex gap-3 overflow-hidden">
-          {CardsData.map((item) => (
+        <div className="max-md:hidden items-center justify-center flex gap-3 overflow-hidden px-6">
+          {CardsData.map((item, index) => (
             <Card
+              key={index}
               title={item.title}
               titleIcon={item.titleIcon}
               coins={coins}
