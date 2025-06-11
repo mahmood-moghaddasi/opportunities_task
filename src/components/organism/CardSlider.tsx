@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, PanInfo } from "framer-motion";
 import arrowP from "@/../../public/icons/arrowP.svg";
 import arrowN from "@/../../public/icons/arrowN.svg";
 import Image from "next/image";
@@ -23,7 +23,10 @@ export default function CardSlider<T>({ items, children }: CardSliderProps<T>) {
     });
   };
 
-  const handleDragEnd = (_: any, info: { offset: { x: number } }) => {
+  const handleDragEnd = (
+    event: MouseEvent | TouchEvent | PointerEvent,
+    info: PanInfo
+  ) => {
     if (info.offset.x < -50) {
       slideTo("right");
     } else if (info.offset.x > 50) {
