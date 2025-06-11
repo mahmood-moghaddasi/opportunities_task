@@ -23,26 +23,35 @@ export default function CardSlider<T>({ items, children }: CardSliderProps<T>) {
     });
   };
 
+  const handleDragEnd = (_: any, info: { offset: { x: number } }) => {
+    if (info.offset.x < -50) {
+      slideTo("right");
+    } else if (info.offset.x > 50) {
+      slideTo("left");
+    }
+  };
+
   const variants = {
     enter: (dir: string) => ({
       x: dir === "left" ? -300 : 300,
       opacity: 0,
+      position: "absolute" as const,
     }),
     center: {
       x: 0,
       opacity: 1,
+      position: "relative" as const,
     },
     exit: (dir: string) => ({
       x: dir === "left" ? 300 : -300,
       opacity: 0,
+      position: "absolute" as const,
     }),
   };
 
   return (
-    <div
-      className={`w-full max-w-xs mx-auto mt-[-30px] relative  min-md:hidden`}
-    >
-      <div className="relative  h-fit rounded-2xl  bg-gray-900 shadow-lg ">
+    <div className="w-full max-w-xs mx-auto relative min-md:hidden">
+      <div className="relative h-[400px] rounded-2xl bg-[#171717]  overflow-hidden">
         <AnimatePresence custom={direction} mode="wait">
           <motion.div
             key={currentIndex}
@@ -52,7 +61,10 @@ export default function CardSlider<T>({ items, children }: CardSliderProps<T>) {
             animate="center"
             exit="exit"
             transition={{ duration: 0.4 }}
-            className="absolute top-60 inset-0 flex items-center justify-center px-4"
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            onDragEnd={handleDragEnd}
+            className="w-full h-full flex items-center justify-center px-4"
           >
             {children(items[currentIndex])}
           </motion.div>
@@ -60,20 +72,19 @@ export default function CardSlider<T>({ items, children }: CardSliderProps<T>) {
 
         <button
           onClick={() => slideTo("left")}
-          className="absolute left-[2px] bottom-[-270px] -translate-y-1/2 bg-white/10 hover:bg-white/20 p-1 rounded-full cursor-pointer"
+          className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 p-1 rounded-full"
         >
-          <Image src={arrowP} alt="perv" width={20} height={20} />
+          <Image src={arrowP} alt="prev" width={20} height={20} />
         </button>
-
         <button
           onClick={() => slideTo("right")}
-          className="absolute right-[2px] bottom-[-270px] -translate-y-1/2 bg-white/10 hover:bg-white/20 p-1 rounded-full cursor-pointer"
+          className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 p-1 rounded-full"
         >
           <Image src={arrowN} alt="next" width={20} height={20} />
         </button>
       </div>
 
-      <div className="absolute left-[140px] bottom-[-150px] mt-4 flex justify-center gap-2">
+      <div className="mt-4 flex justify-center gap-2">
         {items.map((_, idx) => (
           <div
             key={idx}
