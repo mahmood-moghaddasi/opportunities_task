@@ -7,7 +7,7 @@ import star from "@/../../public/icons/star.svg";
 import rise from "@/../../public/icons/rise.svg";
 import fire from "@/../../public/icons/fire.svg";
 import stats from "@/../../public/icons/stats.svg";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import arrow from "@/../../public/icons/arrow.svg";
 import { useInView } from "framer-motion";
 import { motion } from "framer-motion";
@@ -34,7 +34,7 @@ interface coin {
 }
 const CardsData: {
   title: string;
-  titleIcon: any;
+  titleIcon: StaticImageData;
   coins: coin[];
 }[] = [
   {
