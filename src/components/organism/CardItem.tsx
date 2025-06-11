@@ -18,10 +18,10 @@ function CardItem({ coin }: CardItemProps) {
   const [showDrag, setShowDrag] = useState(false);
   return (
     <motion.li
-      className="w-full h-fit flex justify-between relative hover:bg-[#0C0C14] px-4 "
-      initial={{ opacity: 0, y: -20 }}
+      className="w-full h-fit flex justify-between relative hover:bg-[#0C0C14] px-4 cursor-pointer "
+      initial={{ opacity: 0, y: "-20px" }}
       animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: 20 }}
+      exit={{ opacity: 0, y: "20px" }}
       transition={{ duration: 0.4, type: "spring", stiffness: 300 }}
       onMouseEnter={() => setShowDrag(true)}
       onMouseLeave={() => setShowDrag(false)}

@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Card from "../organism/Card";
 import coins from "@/data/coins.json";
 
@@ -40,7 +40,7 @@ const CardsData: {
   {
     title: "Hot List",
     titleIcon: fire,
-    coins: coins, // fill with real data
+    coins: coins,
   },
   {
     title: "New Coins",
@@ -56,9 +56,22 @@ const CardsData: {
 function OpportunitiesSection() {
   const ref = useRef(null);
   const isInView = useInView(ref);
+  const [isPending, setIsPending] = useState(true);
+
   console.log(isInView);
   const words =
     "Want to buy Bitcoin outright or trade CFDs on Gold or EUR/USD? We've got you covered with access to 100+ global markets on oneplatform.";
+  useEffect(() => {
+    if (isInView) {
+      const timer = setTimeout(() => {
+        console.log("المنت وارد ویوپورت شد و ۲ ثانیه گذشت ✅");
+
+        setIsPending(false);
+      }, 2000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isInView]);
   return (
     <>
       <div ref={ref} className="pt-10 flex flex-col gap-10 relative">
@@ -102,40 +115,39 @@ function OpportunitiesSection() {
             viewport={{ once: true }}
           >
             {words.split(" ").map((word, index) => (
-              <motion.span key={index} variants={wordAnimation}>
+              <motion.span className="" key={index} variants={wordAnimation}>
                 {word}{" "}
               </motion.span>
             ))}
           </motion.div>
-          <button className="bg-[#7277F7] px-8 py-2 rounded-[10px] text-[14px] font-bold flex items-center gap-1 cursor-pointer">
+          <button className="bg-[#7277F7] px-8 py-2 rounded-[10px] text-[14px] font-bold flex items-center gap-1 cursor-pointer z-20">
             View All coins
             <Image src={arrow} alt="arrow" width={25} height={20} />
           </button>
         </div>
         <div className="max-md:hidden items-center justify-center flex gap-3 overflow-hidden">
           {CardsData.map((item) => (
-          <Card
+            <Card
               title={item.title}
               titleIcon={item.titleIcon}
-            coins={coins}
+              coins={coins}
               fetchData={true}
               isPending={isPending}
-          />
+            />
           ))}
         </div>
         <div className="h-[300px] flex gap-3 px-6">
           <CardSlider items={CardsData}>
             {(item) => (
-          <Card
+              <Card
                 title={item.title}
                 titleIcon={item.titleIcon}
                 coins={item.coins}
                 fetchData={true}
                 isPending={isPending}
-          />
+              />
             )}
           </CardSlider>
-          <></>
         </div>
       </div>
     </>
