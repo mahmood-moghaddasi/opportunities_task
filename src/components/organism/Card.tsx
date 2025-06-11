@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from "react";
 
 import Image, { StaticImageData } from "next/image";
-import { shuffleArray } from "@/utils/helpers";
 import { AnimatePresence, motion } from "framer-motion";
 import CardItem from "./CardItem";
 import CardSkeleton from "./CardSkeleton";
@@ -30,15 +29,30 @@ function Card({
   isPending,
 }: CardProps): React.ReactElement {
   const [items, setItems] = useState(coins);
+
   useEffect(() => {
-    if (fetchData === false) return; //using this state for stop our sample data fetching(works with viewPort)
+    if (!fetchData) return;
+
     const interval = setInterval(() => {
-      setItems((prev) => shuffleArray(prev));
-      console.log("change");
-    }, 3000);
+      setItems((prev) => {
+        const newItems = [...prev];
+        const numToMove = Math.floor(Math.random() * 2) + 2;
+
+        const movedItems: coin[] = [];
+
+        for (let i = 0; i < numToMove && newItems.length > 0; i++) {
+          const randomIndex = Math.floor(Math.random() * newItems.length);
+          const [removed] = newItems.splice(randomIndex, 1);
+          if (removed) movedItems.push(removed);
+        }
+
+        return [...newItems, ...movedItems];
+      });
+    }, 5000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [fetchData]);
+
   return (
     <div className="w-[330px] h-fit  flex flex-col gap-8  pt-5 pb-6 bg-[#13141A] border rounded-xl border-[#2B2C31] ">
       <div className="flex bg-[#101116] rounded-2xl w-fit pr-3 pl-2 py-0.5 items-center gap-1 ml-4">
@@ -50,18 +64,21 @@ function Card({
           <CardSkeleton />
         </div>
       ) : (
-      <motion.ul
-        className="flex flex-col gap-4 "
-        initial={{ y: "200px", opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: "0.4" }}
-      >
-        {items.map((coin, index) => (
-          <div key={index}>
-            <CardItem coin={coin} />
-          </div>
-        ))}
-      </motion.ul>
+        <motion.ul
+          className="flex flex-col gap-4 "
+          initial={{ y: "200px", opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: "0.4" }}
+        >
+          <AnimatePresence>
+            {items.slice(0, 5).map((coin, index) => (
+              <div key={index}>
+                <CardItem coin={coin} />
+              </div>
+            ))}
+          </AnimatePresence>
+        </motion.ul>
+      )}
     </div>
   );
 }
