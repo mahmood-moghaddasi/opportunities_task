@@ -18,7 +18,6 @@ interface CardProps {
   coins: Coin[];
   title: string;
   titleIcon: StaticImageData;
-  fetchData: boolean;
   isPending: boolean;
 }
 
@@ -26,7 +25,6 @@ function Card({
   coins,
   title,
   titleIcon,
-  fetchData,
   isPending,
 }: CardProps): React.ReactElement {
   const [items, setItems] = useState<Coin[]>(coins);

@@ -130,7 +130,6 @@ function OpportunitiesSection() {
               title={item.title}
               titleIcon={item.titleIcon}
               coins={coins}
-              fetchData={true}
               isPending={isPending}
             />
           ))}
@@ -142,7 +141,6 @@ function OpportunitiesSection() {
                 title={item.title}
                 titleIcon={item.titleIcon}
                 coins={item.coins}
-                fetchData={true}
                 isPending={isPending}
               />
             )}
