@@ -11,6 +11,7 @@ import Image from "next/image";
 import arrow from "@/../../public/icons/arrow.svg";
 import { useInView } from "framer-motion";
 import { motion } from "framer-motion";
+import CardSlider from "../organism/CardSlider";
 
 const container = {
   hidden: {},
@@ -24,7 +25,34 @@ const wordAnimation = {
   hidden: { opacity: 0, x: -20 },
   show: { opacity: 1, x: 0, transition: { ease: "easeOut", duration: 0.4 } },
 };
-
+interface coin {
+  logo: string;
+  name: string;
+  pair: string;
+  price: number;
+  change: number;
+}
+const CardsData: {
+  title: string;
+  titleIcon: any;
+  coins: coin[];
+}[] = [
+  {
+    title: "Hot List",
+    titleIcon: fire,
+    coins: coins, // fill with real data
+  },
+  {
+    title: "New Coins",
+    titleIcon: star,
+    coins: coins,
+  },
+  {
+    title: "Top Gainers",
+    titleIcon: rise,
+    coins: coins,
+  },
+];
 function OpportunitiesSection() {
   const ref = useRef(null);
   const isInView = useInView(ref);
@@ -58,7 +86,7 @@ function OpportunitiesSection() {
             <p className="text-[14px]">New opportunities</p>
           </div>
           <motion.h1
-            className="text-3xl"
+            className="text-3xl max-sm:w-[400px] text-center"
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -67,7 +95,7 @@ function OpportunitiesSection() {
             <span className="text-[#676DF6]">TRADE</span> YOUR FAVOURITE MARKETS
           </motion.h1>
           <motion.div
-            className="w-[500px] text-[12px] text-center text-[#616267]"
+            className="w-[500px] max-sm:w-[400px] text-[12px] text-center text-[#616267]"
             variants={container}
             initial="hidden"
             whileInView="show"
@@ -84,25 +112,30 @@ function OpportunitiesSection() {
             <Image src={arrow} alt="arrow" width={25} height={20} />
           </button>
         </div>
-        <div className="flex gap-3">
+        <div className="max-md:hidden items-center justify-center flex gap-3 overflow-hidden">
+          {CardsData.map((item) => (
           <Card
-            fetchData={isInView}
+              title={item.title}
+              titleIcon={item.titleIcon}
             coins={coins}
-            title={"Hot List"}
-            titleIcon={fire}
+              fetchData={true}
+              isPending={isPending}
           />
+          ))}
+        </div>
+        <div className="h-[300px] flex gap-3 px-6">
+          <CardSlider items={CardsData}>
+            {(item) => (
           <Card
-            fetchData={isInView}
-            coins={coins}
-            title={"New Coins"}
-            titleIcon={star}
+                title={item.title}
+                titleIcon={item.titleIcon}
+                coins={item.coins}
+                fetchData={true}
+                isPending={isPending}
           />
-          <Card
-            fetchData={isInView}
-            coins={coins}
-            title={"Top Gainers"}
-            titleIcon={rise}
-          />
+            )}
+          </CardSlider>
+          <></>
         </div>
       </div>
     </>
