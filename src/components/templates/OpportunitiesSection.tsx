@@ -114,7 +114,7 @@ function OpportunitiesSection() {
           >
             {words.split(" ").map((word, index) => (
               <motion.span className="" key={index} variants={wordAnimation}>
-                {word}{" "}
+                {word}
               </motion.span>
             ))}
           </motion.div>
